@@ -22,6 +22,9 @@ class Query {
 
   /// Slash-delimited path representing the database location of this query.
   String get path => _pathComponents.join('/');
+  
+  String get fullPath =>
+    '$path/${_parameters.entries.map((e) => '${e.key}/${e.value}').join('/')}';
 
   Query _copyWithParameters(Map<String, dynamic> parameters) {
     return Query._(
